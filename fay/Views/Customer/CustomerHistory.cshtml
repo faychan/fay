@@ -16,12 +16,14 @@
             @foreach (var i in Model.orders)
             {
                 <tr>
-                    <td> @Html.DisplayFor(m => i.Namaoutbond)</td>
+                    <td> @Html.DisplayFor(m => i.namaoutbond)</td>
+                    <td> @Html.DisplayFor(m => i.keterangan)</td>
+                    <td> @Html.DisplayFor(m => i.tgl_akhir)</td>
+                    <td> @Html.DisplayFor(m => i.tgl_mulai)</td>
+                    <td> @Html.DisplayFor(m => i.tgl_pesan)</td>
                     <td> @Html.DisplayFor(m => i.harga)</td>
-                    <td> @Html.DisplayFor(m => i.Quantity)</td>
-                    <td> @Html.DisplayFor(m => i.Jumlah)</td>
-                    <td> @Html.DisplayFor(m => i.Meja)</td>
-                    <td> @Html.DisplayFor(m => i.Keterangan)</td>
+                    <td> @Html.DisplayFor(m => i.quantity)</td>
+                    <td> @Html.DisplayFor(m => i.jumlah)</td>                 
                     <td><button class="btn btn-danger outbondDelete">Delete</button></td>
                 </tr>
             }

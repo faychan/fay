@@ -45,23 +45,23 @@
                     <div class="form-group">
                         <div class="input-group">
                             <label for="customerID" class="control-label">ID</label>
-                            <input type="text" id="customerID" class="form-control" />
+                            <input type="text" id="no_id" class="form-control" />
                         </div>
                         <div class="input-group">
                             <label for="customerName" class="control-label">Name</label>
-                            <input type="text" id="customerName" class="form-control" />
+                            <input type="text" id="nama" class="form-control" />
                         </div>
                         <div class="input-group">
                             <label for="customerAddress" class="control-label">Address</label>
-                            <input type="text" id="customerAddress" class="form-control" />
+                            <input type="text" id="alamat" class="form-control" />
                         </div>
                         <div class="input-group">
                             <label for="customerPhoneOne" class="control-label">Telephone 1</label>
-                            <input type="text" id="customerPhoneOne" class="form-control" />
+                            <input type="text" id="no_tlp1" class="form-control" />
                         </div>
                         <div class="input-group">
                             <label for="customerPhoneTwo" class="control-label">Telephone 2</label>
-                            <input type="text" id="customerPhoneTwo" class="form-control" />
+                            <input type="text" id="no_tlp2" class="form-control" />
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -71,18 +71,18 @@
                 </div>
                 <script>
 
-    function commitData(pID, cID, cN, cA, cPO, cPT) {
+    function commitData() {
         $.ajax({
             type: "POST",
             url: "@(Url.Action("EditCustomer","Customer"))",
             data: {
-                pelangganID: pID,
-                customerID: cID,
-                customerName: cN,
-                customerAddress: cA,
-                customerPhoneOne: cPO,
-                customerPhoneTwo: cPT
-            },
+                id_pelanggan: id_pelanggan,
+                no_id: no_id,
+                nama: nama,
+                alamat: alamat,
+                no_tlp1: no_tlp1,
+                no_tlp2: no_tlp2
+                },
         success: function (data) {
             $("#divUserListContainer").load("@(Url.Action("CustomerPartial","Customer"))");
             console.log("Customer Commit success!");
@@ -92,11 +92,11 @@
         }
     });
     }
-    function DeleteCustomer(id) {
+    function DeleteCustomer(id_pelanggan) {
         $.ajax({
             type: "POST",
             url: "@(Url.Action("DeleteCustomer","Customer"))",
-            data: { pelangganID: id },
+            data: { id_pelanggan: id_pelanggan },
         success: function (data) {
             $("#divUserListContainer").load("@(Url.Action("CustomerPartial","Customer"))");
             console.log("Customer Deletion success!");
@@ -107,11 +107,11 @@
     });
     }
 
-    function GetCustomerHistory(id) {
+    function GetCustomerHistory(id_pelanggan) {
         $.ajax({
             type: "POST",
             url: "@(Url.Action("CustomerHistory","Customer"))",
-            data: { pelangganID: id },
+            data: { id_pelanggan: id_pelanggan },
             success: function (data) {
                 console.log(data);
                 $("#divCustomerHistory").html(data);
@@ -126,7 +126,7 @@
     var id;
     $("button.outbondDelete").click(function () {
         var row = $(this).closest('tr');
-        id = row.find("td:eq(0)").html().trim();
+        id_pelanggan = row.find("td:eq(0)").html().trim();
         console.log(id);
         $("#deleteModal").modal('show');
     });
@@ -135,36 +135,36 @@
     $("button.outbondHistory").click(function () {
 
         var row = $(this).closest('tr');
-        id = row.find("td:eq(0)").html().trim();
+        id_pelanggan = row.find("td:eq(0)").html().trim();
         GetCustomerHistory(id);
         $("#historyModal").modal('show');
     });
 
     $("button.outbondEdit").click(function () {
         var row = $(this).closest('tr');
-        id = row.find("td:eq(0)").html().trim();
+        id_pelanggan = row.find("td:eq(0)").html().trim();
 
-        $("#customerID").val(row.find("td:eq(1)").html().trim())
-        $("#customerName").val(row.find("td:eq(2)").html().trim())
-        $("#customerAddress").val(row.find("td:eq(3)").html().trim())
-        $("#customerPhoneOne").val(row.find("td:eq(4)").html().trim())
-        $("#customerPhoneTwo").val(row.find("td:eq(5)").html().trim())
+        $("#no_id").val(row.find("td:eq(1)").html().trim())
+        $("#nama").val(row.find("td:eq(2)").html().trim())
+        $("#alamat").val(row.find("td:eq(3)").html().trim())
+        $("#no_tlp1").val(row.find("td:eq(4)").html().trim())
+        $("#no_tlp2").val(row.find("td:eq(5)").html().trim())
         $("#editModal").modal('show');
     });
 
     $("#deletThis").click(function () {
-        DeleteCustomer(id);
+        DeleteCustomer(id_pelanggan);
         $('#deleteModal').modal('hide');
     });
 
     $("#saveData").click(function () {
-        var cID = $("#customerID").val();
-        var cN = $("#customerName").val();
-        var cA = $("#customerAddress").val();
-        var cPO = $("#customerPhoneOne").val();
-        var cPT = $("#customerPhoneTwo").val();
+        no_id = $("#no_id").val();
+        nama = $("#nama").val();
+        alamat = $("#alamat").val();
+        no_tlp1 = $("#no_tlp1").val();
+        no_tlp2 = $("#no_tlp2").val();
 
-        commitData(id, cID, cN, cA, cPO, cPT);
+        commitData();
         $('#editModal').modal('hide');
     });
                 </script>

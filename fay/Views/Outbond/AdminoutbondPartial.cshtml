@@ -28,7 +28,7 @@
                 <div class="full-width">
                     <div class="form-group">
                         <div class="input-group">
-                            <label for="keterangan" class="control-label">keterangan</label>
+                            <label for="keterangan" class="control-label">Description</label>
                             <input type="text" id="keterangan" class="form-control" />
                         </div>
                         <div class="input-group">
@@ -60,8 +60,8 @@
     }
 
     function Updateoutbond() {
-        console.log(harga)
         console.log(keterangan)
+        console.log(harga)
         console.log(id_outbond)
 
         $.ajax({
@@ -92,8 +92,8 @@
 
     $("button.outbondEdit").click(function () {
         var row = $(this).closest('tr');
-        keterangan = row.find("td:eq(1)").html().trim();
-        harga = row.find("td:eq(2)").html().trim();
+        keterangan = row.find("td:eq(2)").html().trim();
+        harga = row.find("td:eq(1)").html().trim();
         id_outbond = row.find("td:eq(0)").html().trim();
         $("#keterangan").val(keterangan);
         $("#harga").val(harga);

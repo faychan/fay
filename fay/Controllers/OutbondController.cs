@@ -39,12 +39,12 @@ namespace fay.Controllers
         }
 
        //[AuthorizeRoles("Admin")]
-        public ActionResult UpdateoutbondData(int outbondID, string outbondketerangan, int outbondPrice)
+        public ActionResult UpdateoutbondData(int id_outbond, string keterangan, int harga)
         {
             outbondProfileView MPV = new outbondProfileView();
-            MPV.id_outbond = outbondID;
-            MPV.keterangan = outbondketerangan;
-            MPV.harga = outbondPrice;
+            MPV.id_outbond = id_outbond;
+            MPV.keterangan = keterangan;
+            MPV.harga = harga;
 
             using (DemoEntities1 db = new DemoEntities1())
             {
@@ -53,9 +53,8 @@ namespace fay.Controllers
                     try
                     {
                         outbond m = db.outbonds.Find(MPV.id_outbond);
-                        m.harga = MPV.harga;
-                        m.id_outbond = MPV.id_outbond;
                         m.keterangan = MPV.keterangan;
+                        m.harga = MPV.harga;
 
                         db.SaveChanges();
                         dbContext.Commit();
@@ -70,14 +69,14 @@ namespace fay.Controllers
             return Json(new
             {
                 success = true,
-                name = MPV.keterangan,
-                id = MPV.id_outbond,
-                price = MPV.harga
+                id_outbond = MPV.id_outbond,
+                keterangan = MPV.keterangan,
+                harga = MPV.harga
             });
         }
 
        //[AuthorizeRoles("Admin")]
-        public ActionResult DeleteUser(int outbondID)
+        public ActionResult DeleteUser(int id_outbond)
         {
             using (DemoEntities1 db = new DemoEntities1())
             {
@@ -85,7 +84,7 @@ namespace fay.Controllers
                 {
                     try
                     {
-                        var mn = db.outbonds.Where(o => o.id_outbond.Equals(outbondID));
+                        var mn = db.outbonds.Where(o => o.id_outbond.Equals(id_outbond));
                         if (mn.Any())
                         {
                             db.outbonds.Remove(mn.FirstOrDefault());

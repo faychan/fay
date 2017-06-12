@@ -94,16 +94,17 @@ namespace fay.Controllers
         }
 
         public ActionResult EditCustomer(
-            int id_pelanggan, string customerID, string customerName, string customerAddress, string customerPhoneOne, string customerPhoneTwo)
+            int id_pelanggan, string no_id, string nama, string alamat, string no_tlp1, string no_tlp2)
         {
 
             CustomerProfileView CPV = new CustomerProfileView();
-            CPV.alamat = customerAddress;
-            CPV.nama = customerName;
-            CPV.no_id = customerID;
+
             CPV.id_pelanggan = id_pelanggan;
-            CPV.no_tlp1 = customerPhoneOne;
-            CPV.no_tlp2 = customerPhoneTwo;
+            CPV.no_id = no_id;
+            CPV.nama = nama;
+            CPV.alamat = alamat;
+            CPV.no_tlp1 = no_tlp1;
+            CPV.no_tlp2 = no_tlp2;
 
             using (DemoEntities1 db = new DemoEntities1())
             {
@@ -129,8 +130,14 @@ namespace fay.Controllers
 
             return Json(new
             {
-                success = true
-            });
+                success = true,
+            id_pelanggan = CPV.id_pelanggan,
+                no_id = CPV.no_id,
+                nama = CPV.nama,
+                alamat = CPV.alamat,
+                no_tlp1 = CPV.no_tlp1,
+                no_tlp2 = CPV.no_tlp2
+        });
         }
     }
 }
