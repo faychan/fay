@@ -50,7 +50,6 @@ namespace fay.Models.ViewModel
 
     public class CustomerDataView
     {
-
         public IEnumerable<CustomerProfileView> CustomerProfile { get; set; }
     }
 }

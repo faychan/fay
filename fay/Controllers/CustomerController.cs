@@ -22,15 +22,10 @@ namespace fay.Controllers
       // //[AuthorizeRoles("Admin")]
         public ActionResult CustomerPartial()
         {
-            if (User.Identity.IsAuthenticated == true)
-            {
-
+            
                 CustomerManager CM = new CustomerManager();
-                CustomerDataView CDV = CM.GetoutbondDataView();
+                CustomerDataView CDV = CM.GetCustomerDataView();
                 return PartialView(CDV);
-
-            }
-            return View();
         }
 
       // //[AuthorizeRoles("Admin")]

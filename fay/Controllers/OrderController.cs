@@ -22,14 +22,9 @@ namespace fay.Controllers
        //[AuthorizeRoles("Admin")]
         public ActionResult OrderPartial()
         {
-            if (User.Identity.IsAuthenticated == true)
-            {
                 OrderManager OM = new OrderManager();
                 OrderDataView ODV = OM.GetOrderDataView();
                 return PartialView(ODV);
-
-            }
-            return View();
         }
 
         // GET: Order

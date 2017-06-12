@@ -40,10 +40,10 @@ namespace fay.Models.EntityManager
                 foreach (pelanggan p in db.pelanggans)
                 {
                     CV = new CustomerProfileView();
-                    CV.alamat = p.alamat;
-                    CV.nama = p.nama;
-                    CV.no_id = p.no_id;
                     CV.id_pelanggan = p.id_pelanggan;
+                    CV.no_id = p.no_id;
+                    CV.nama = p.nama;
+                    CV.alamat = p.alamat;
                     CV.no_tlp1 = p.no_tlp1;
                     CV.no_tlp2 = p.no_tlp2;
                     customers.Add(CV);
@@ -51,7 +51,7 @@ namespace fay.Models.EntityManager
                 return customers;
             }
         }
-        public CustomerDataView GetoutbondDataView()
+        public CustomerDataView GetCustomerDataView()
         {
             CustomerDataView CDV = new CustomerDataView();
             List<CustomerProfileView> customers = GetAllCustomers();

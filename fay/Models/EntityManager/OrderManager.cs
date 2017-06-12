@@ -65,8 +65,7 @@ namespace fay.Models.EntityManager
                     OV.harga = l.harga;
                     OV.quantity = l.quantity;
                     OV.jumlah = l.jumlah;
-                    
-                    
+
                     orders.Add(OV);
                 }
             }

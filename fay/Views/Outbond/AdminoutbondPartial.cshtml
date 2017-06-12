@@ -11,7 +11,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" id="deletThis">Yeah</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">N-nooo</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">N-nooo!!</button>
             </div>
         </div>
     </div>
@@ -28,17 +28,14 @@
                 <div class="full-width">
                     <div class="form-group">
                         <div class="input-group">
-                            <label for="outbondName" class="control-label">Name</label>
-                            <input type="text" id="outbondName" class="form-control" />
+                            <label for="keterangan" class="control-label">keterangan</label>
+                            <input type="text" id="keterangan" class="form-control" />
                         </div>
                         <div class="input-group">
-                            <label for="outbondPrice" class="control-label">Price</label>
-                            <input type="text" id="outbondPrice" class="form-control" />
+                            <label for="harga" class="control-label">Price</label>
+                            <input type="text" id="harga" class="form-control" />
                         </div>
-                        <div class="input-group">
-                            <label for="outbondketerangan" class="control-label">keterangan</label>
-                            <input type="text" id="outbondketerangan" class="form-control" />
-                        </div>
+                        
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -46,7 +43,7 @@
                     </div>
                 </div>
                 <script>
-    var id_outbond, outbondName, outbondPrice, outbondketerangan;
+    var id_outbond, harga, keterangan;
     function Deleteoutbond(id) {
         $.ajax({
             type: "POST",
@@ -63,10 +60,8 @@
     }
 
     function Updateoutbond() {
-
-        console.log(outbondName)
-        console.log(outbondPrice)
-        console.log(outbondketerangan)
+        console.log(harga)
+        console.log(keterangan)
         console.log(id_outbond)
 
         $.ajax({
@@ -74,9 +69,8 @@
             url: "@(Url.Action("UpdateoutbondData","outbond"))",
             data: {
                 id_outbond: id_outbond,
-                outbondName: outbondName,
-                outbondPrice: outbondPrice,
-                outbondketerangan: outbondketerangan
+                keterangan: keterangan,
+                harga: harga
             },
             success: function(data){
                 $("#divoutbondListContainer").load("@(Url.Action("outbondPartial","outbond"))");
@@ -98,13 +92,11 @@
 
     $("button.outbondEdit").click(function () {
         var row = $(this).closest('tr');
-        outbondName = row.find("td:eq(1)").html().trim();
-        outbondPrice = row.find("td:eq(2)").html().trim();
-        outbondketerangan = row.find("td:eq(3)").html().trim();
+        keterangan = row.find("td:eq(1)").html().trim();
+        harga = row.find("td:eq(2)").html().trim();
         id_outbond = row.find("td:eq(0)").html().trim();
-        $("#outbondName").val(outbondName);
-        $("#outbondPrice").val(outbondPrice);
-        $("#outbondketerangan").val(outbondketerangan);
+        $("#keterangan").val(keterangan);
+        $("#harga").val(harga);
         $("#editModal").modal('show');
     });
 
@@ -114,9 +106,9 @@
     });
 
     $("#saveData").click(function () {
-        outbondName = $("#outbondName").val();
-        outbondPrice = $("#outbondPrice").val();
-        outbondketerangan = $("#outbondketerangan").val();
+        keterangan = $("#keterangan").val();
+        harga = $("#harga").val();
+        
         Updateoutbond();
         $('#editModal').modal('hide');
     });
