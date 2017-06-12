@@ -65,7 +65,7 @@ namespace fay.Controllers
       // //[AuthorizeRoles("Admin")]
         public ActionResult DeleteCustomer(int id_pelanggan)
         {
-            using (DemoEntities db = new DemoEntities())
+            using (DemoEntities1 db = new DemoEntities1())
             {
                 using (var dbContext = db.Database.BeginTransaction())
                 {
@@ -110,7 +110,7 @@ namespace fay.Controllers
             CPV.no_tlp1 = customerPhoneOne;
             CPV.no_tlp2 = customerPhoneTwo;
 
-            using (DemoEntities db = new DemoEntities())
+            using (DemoEntities1 db = new DemoEntities1())
             {
                 using (var dbContext = db.Database.BeginTransaction())
                 {

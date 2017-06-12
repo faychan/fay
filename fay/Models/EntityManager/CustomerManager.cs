@@ -14,7 +14,7 @@ namespace fay.Models.EntityManager
         public void AddCustomer(addCustomerView c)
         {
 
-            using (DemoEntities db = new DemoEntities())
+            using (DemoEntities1 db = new DemoEntities1())
             {
 
                 pelanggan p = new pelanggan();
@@ -33,7 +33,7 @@ namespace fay.Models.EntityManager
         public List<CustomerProfileView> GetAllCustomers()
         {
             List<CustomerProfileView> customers = new List<CustomerProfileView>();
-            using (DemoEntities db = new DemoEntities())
+            using (DemoEntities1 db = new DemoEntities1())
             {
                 CustomerProfileView CV;
                 var customer = db.pelanggans.ToList();

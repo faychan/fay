@@ -13,7 +13,7 @@ namespace fay.Models.EntityManager
         public void Addoutbond(addoutbondView m)
         {
 
-            using (DemoEntities db = new DemoEntities())
+            using (DemoEntities1 db = new DemoEntities1())
             {
 
                 outbond mn = new outbond();
@@ -29,7 +29,7 @@ namespace fay.Models.EntityManager
         public List<outbondProfileView> GetAlloutbonds()
         {
             List<outbondProfileView> outbonds = new List<outbondProfileView>();
-            using (DemoEntities db = new DemoEntities())
+            using (DemoEntities1 db = new DemoEntities1())
             {
                 outbondProfileView MV;
                 var outbond = db.outbonds.ToList();

@@ -1,11 +1,92 @@
-﻿
-@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/_Base/_index.cshtml";
-}
-<h2>outbond List</h2>
-<h4>Enjoy our treats!</h4>
-<hr />
-<div id="divOrderListContainer">
-    @Html.Action("OrderPartial", "Order");
-</div>   
+﻿@model fay.Models.ViewModel.OrderDataView
+
+<div id="">
+    <table class="table table-striped table-condensed table-hover">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Customer Name</th>
+                <th>Outbond</th>
+                <th>Details</th>
+                <th>End Date</th>
+                <th>Start Date</th>
+                <th>Order Date</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var i in Model.orders)
+            {
+                <tr>
+                    <td> @Html.DisplayFor(m => i.id_laporan)</td>
+                    <td> @Html.DisplayFor(m => i.namapelanggan)</td>
+                    <td> @Html.DisplayFor(m => i.namaoutbond)</td>
+                    <td> @Html.DisplayFor(m => i.keterangan)</td>
+                    <td> @Html.DisplayFor(m => i.tgl_akhir)</td>
+                    <td> @Html.DisplayFor(m => i.tgl_mulai)</td>
+                    <td> @Html.DisplayFor(m => i.tgl_pesan)</td>
+                    <td> @Html.DisplayFor(m => i.quantity)</td>
+                    <td> @Html.DisplayFor(m => i.harga)</td>
+                    <td> @Html.DisplayFor(m => i.jumlah)</td>
+                    
+                    
+                    <td class="btn-group-sm"><button class="btn btn-danger menuDelete">Delete</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Delete Menu</h4>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure want to delete this menu?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" id="deletThis">Yeah</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">N-nooo</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    var id;
+
+    function DeleteOrder(id) {
+        $.ajax({
+            type: "POST",
+            url: "@(Url.Action("DeleteOrder","Order"))",
+            data: { orderID: id },
+            success: function (data) {
+                $("#divOrderListContainer").load("@(Url.Action("OrderPartial","Order"))");
+                console.log("Order Deletion success!");
+            },
+            error: function (error) {
+                console.log("Order Deletion Failed!!");
+            }
+        });
+    }
+
+        $("button.menuDelete").click(function () {
+            var row = $(this).closest('tr');
+            id = row.find("td:eq(0)").html().trim();
+            console.log(id);
+            $("#deleteModal").modal('show');
+        });
+
+        $("#deletThis").click(function () {
+            DeleteOrder(id);
+            $('#deleteModal').modal('hide');
+        });
+
+</script>

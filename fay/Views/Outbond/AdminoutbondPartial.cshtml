@@ -36,8 +36,8 @@
                             <input type="text" id="outbondPrice" class="form-control" />
                         </div>
                         <div class="input-group">
-                            <label for="outbondStock" class="control-label">Stock</label>
-                            <input type="text" id="outbondStock" class="form-control" />
+                            <label for="outbondketerangan" class="control-label">keterangan</label>
+                            <input type="text" id="outbondketerangan" class="form-control" />
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -46,12 +46,12 @@
                     </div>
                 </div>
                 <script>
-    var outbondID, outbondName, outbondPrice, outbondStock;
+    var id_outbond, outbondName, outbondPrice, outbondketerangan;
     function Deleteoutbond(id) {
         $.ajax({
             type: "POST",
             url: "@(Url.Action("DeleteUser","outbond"))",
-            data: { outbondID: id },
+            data: { id_outbond: id },
         success: function (data) {
             $("#divoutbondListContainer").load("@(Url.Action("outbondPartial","outbond"))");
             console.log("outbond Deletion success!");
@@ -66,17 +66,17 @@
 
         console.log(outbondName)
         console.log(outbondPrice)
-        console.log(outbondStock)
-        console.log(outbondID)
+        console.log(outbondketerangan)
+        console.log(id_outbond)
 
         $.ajax({
             type: "POST",
             url: "@(Url.Action("UpdateoutbondData","outbond"))",
             data: {
-                outbondID: outbondID,
+                id_outbond: id_outbond,
                 outbondName: outbondName,
                 outbondPrice: outbondPrice,
-                outbondStock: outbondStock
+                outbondketerangan: outbondketerangan
             },
             success: function(data){
                 $("#divoutbondListContainer").load("@(Url.Action("outbondPartial","outbond"))");
@@ -100,11 +100,11 @@
         var row = $(this).closest('tr');
         outbondName = row.find("td:eq(1)").html().trim();
         outbondPrice = row.find("td:eq(2)").html().trim();
-        outbondStock = row.find("td:eq(3)").html().trim();
-        outbondID = row.find("td:eq(0)").html().trim();
+        outbondketerangan = row.find("td:eq(3)").html().trim();
+        id_outbond = row.find("td:eq(0)").html().trim();
         $("#outbondName").val(outbondName);
         $("#outbondPrice").val(outbondPrice);
-        $("#outbondStock").val(outbondStock);
+        $("#outbondketerangan").val(outbondketerangan);
         $("#editModal").modal('show');
     });
 
@@ -116,7 +116,7 @@
     $("#saveData").click(function () {
         outbondName = $("#outbondName").val();
         outbondPrice = $("#outbondPrice").val();
-        outbondStock = $("#outbondStock").val();
+        outbondketerangan = $("#outbondketerangan").val();
         Updateoutbond();
         $('#editModal').modal('hide');
     });

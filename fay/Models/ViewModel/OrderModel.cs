@@ -13,8 +13,11 @@ namespace fay.Models.ViewModel
         public string namapelanggan { get; set; }
         public string namaoutbond { get; set; }
         public string keterangan { get; set; }
+        [DataType(DataType.Date)]
         public DateTime tgl_akhir { get; set; }
+        [DataType(DataType.Date)]
         public DateTime tgl_mulai { get; set; }
+        [DataType(DataType.Date)]
         public DateTime tgl_pesan { get; set; }
         public int quantity { get; set; }
         public int harga { get; set; }
@@ -57,11 +60,14 @@ namespace fay.Models.ViewModel
         [Display(Name = "Order Details")]
         public string keterangan { get; set; }
         [Display(Name = "End Date")]
-        public int tgl_akhir { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime? tgl_akhir { get; set; }
         [Display(Name = "Start Date")]
-        public int tgl_mulai { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime? tgl_mulai { get; set; }
         [Display(Name = "Order Date")]
-        public int tgl_pesan { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime? tgl_pesan { get; set; }
         [Display(Name = "quantity")]
         public int quantity { get; set; }
         [Display(Name = "Price")]

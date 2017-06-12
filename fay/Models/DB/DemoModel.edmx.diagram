@@ -4,11 +4,11 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c007d4b0a1b44165a304c2257e7be788" Name="Diagram1">
+      <Diagram DiagramId="2dd7ffff07b747f39e6518fe91447b6b" Name="Diagram1">
         <EntityTypeShape EntityType="DemoModel.laporan" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DemoModel.LOOKUPRole" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DemoModel.outbond" Width="1.5" PointX="0.75" PointY="9.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DemoModel.pelanggan" Width="1.5" PointX="5.875" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoModel.pelanggan" Width="1.5" PointX="0.75" PointY="12" IsExpanded="true" />
         <EntityTypeShape EntityType="DemoModel.SYSUser" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
         <EntityTypeShape EntityType="DemoModel.SYSUserProfile" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DemoModel.SYSUserRole" Width="1.5" PointX="6" PointY="4.5" IsExpanded="true" />

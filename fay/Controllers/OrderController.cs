@@ -65,7 +65,7 @@ namespace fay.Controllers
             outbond outbond;
             try
             {
-                using (DemoEntities db = new DemoEntities())
+                using (DemoEntities1 db = new DemoEntities1())
                 {
                     int MID = int.Parse(id_outbond);
                     outbond = db.outbonds.Where(o => o.id_outbond.Equals(MID))?.FirstOrDefault();
@@ -95,7 +95,7 @@ namespace fay.Controllers
        //[AuthorizeRoles("Admin")]
         public ActionResult DeleteOrder(int orderID)
         {
-            using (DemoEntities db = new DemoEntities())
+            using (DemoEntities1 db = new DemoEntities1())
             {
                 using (var dbContext = db.Database.BeginTransaction())
                 {

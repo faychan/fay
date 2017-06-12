@@ -17,12 +17,12 @@
             @foreach (var i in Model.CustomerProfile)
             {
                 <tr>
-                    <td> @Html.DisplayFor(m => i.PelangganID)</td>
-                    <td> @Html.DisplayFor(m => i.NoID)</td>
-                    <td> @Html.DisplayFor(m => i.Nama)</td>
-                    <td> @Html.DisplayFor(m => i.Alamat)</td>
-                    <td> @Html.DisplayFor(m => i.Telepon1)</td>
-                    <td> @Html.DisplayFor(m => i.Telepon2)</td>
+                    <td> @Html.DisplayFor(m => i.id_pelanggan)</td>
+                    <td> @Html.DisplayFor(m => i.no_id)</td>
+                    <td> @Html.DisplayFor(m => i.nama)</td>
+                    <td> @Html.DisplayFor(m => i.alamat)</td>
+                    <td> @Html.DisplayFor(m => i.no_tlp1)</td>
+                    <td> @Html.DisplayFor(m => i.no_tlp2)</td>
                     <td class="btn-group-sm"><button class="btn btn-success outbondHistory">Customer History</button> <button class="btn btn-info outbondEdit">Edit</button> <button class="btn btn-danger outbondDelete">Delete</button></td>
                 </tr>
             }

@@ -6,43 +6,30 @@
             <tr>
                 @{
                     fay.Models.EntityManager.UserManager um = new fay.Models.EntityManager.UserManager();
-                    bool isAdmin = um.IsUserInRole(User.Identity.Name, "Admin");
+                    
                 }
-                @if (isAdmin == true)
-                {
-                    <th>outbond ID</th>
-                }
-                <th>outbond Name</th>
+                <th>outbond ID</th>
                 <th>Price</th>
-                @if (isAdmin == true)
-                {
-                    <th>Stock</th>
-                    <th>Actions</th>
-                }
+                <th>Description</th>
+                <th>Actions</th>
+                
             </tr>
         </thead>
         <tbody>
             @foreach (var i in Model.outbondProfile)
             {
                 <tr>
-                    @if (isAdmin == true)
-                    {
-                        <td>@Html.DisplayFor(m => i.outbondID)</td>
-                    }
-                    <td> @Html.DisplayFor(m => i.Nama)</td>
-                    <td> @Html.DisplayFor(m => i.Harga)</td>
-                    @if (isAdmin == true)
-                    {
-                        <td> @Html.DisplayFor(m => i.Stock)</td>
+                   
+                        <td>@Html.DisplayFor(m => i.id_outbond)/td>
+                    <td> @Html.DisplayFor(m => i.harga)</td>
+                        <td> @Html.DisplayFor(m => i.keterangan)</td>
                         <td class="btn-group-sm"><button class="btn btn-info outbondEdit">Edit</button> <button class="btn btn-danger outbondDelete">Delete</button></td>
-                    }
+                   
                 </tr>
             }
         </tbody>
     </table>
 </div>
 <!-- DIV FOR ANYTHING RELATED TO EDIT AND DELETE -->
-@if (isAdmin == true)
-{
+
     @Html.Action("AdminoutbondPartial", "outbond")
-}

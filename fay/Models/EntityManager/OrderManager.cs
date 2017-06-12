@@ -13,7 +13,7 @@ namespace fay.Models.EntityManager
         public void AddOrder(addOrderView m)
         {
 
-            using (DemoEntities db = new DemoEntities())
+            using (DemoEntities1 db = new DemoEntities1())
             {
                 outbond mn = db.outbonds.Find(m.id_outbond);
                 mn.harga = mn.harga;
@@ -24,7 +24,9 @@ namespace fay.Models.EntityManager
                 lp.id_outbond = m.id_outbond;
                 lp.id_pelanggan = m.id_pelanggan;
                 lp.keterangan = m.keterangan;
-                //lp.Meja = m.Meja;
+                lp.tgl_akhir = m.tgl_akhir;
+                lp.tgl_mulai = m.tgl_mulai;
+                lp.tgl_pesan = m.tgl_pesan;
                 lp.quantity = m.quantity;
                 lp.harga = m.harga;
                 lp.jumlah = m.jumlah;
@@ -38,7 +40,7 @@ namespace fay.Models.EntityManager
         {
 
             List<OrderProfileView> orders = new List<OrderProfileView>();
-            using (DemoEntities db = new DemoEntities())
+            using (DemoEntities1 db = new DemoEntities1())
             {
                 OrderProfileView OV;
 
@@ -54,13 +56,17 @@ namespace fay.Models.EntityManager
                     OV.namapelanggan = pelanggan.nama;
 
                     outbond outbond = db.outbonds.Where(o => o.id_outbond.Equals(l.id_outbond)).FirstOrDefault();
-                 //   OV.namaoutbond = outbond.nama;
+                    OV.namaoutbond = outbond.keterangan;
 
-                    OV.harga = l.harga;
-                    OV.jumlah = l.jumlah;
                     OV.keterangan = l.keterangan;
-                    //OV.Meja = l.Meja;
+                    OV.tgl_akhir = (DateTime)l.tgl_akhir;
+                    OV.tgl_mulai = (DateTime)l.tgl_mulai;
+                    OV.tgl_pesan = (DateTime)l.tgl_pesan;
+                    OV.harga = l.harga;
                     OV.quantity = l.quantity;
+                    OV.jumlah = l.jumlah;
+                    
+                    
                     orders.Add(OV);
                 }
             }
@@ -73,7 +79,7 @@ namespace fay.Models.EntityManager
         {
 
             List<OrderProfileView> orders = new List<OrderProfileView>();
-            using (DemoEntities db = new DemoEntities())
+            using (DemoEntities1 db = new DemoEntities1())
             {
                 OrderProfileView OV;
 
@@ -89,12 +95,14 @@ namespace fay.Models.EntityManager
                     OV.namapelanggan = pelanggan.nama;
 
                     outbond outbond = db.outbonds.Where(o => o.id_outbond.Equals(l.id_outbond)).FirstOrDefault();
-                  //  OV.namaoutbond = outbond.nama;
+                    OV.namaoutbond = outbond.keterangan;
 
                     OV.harga = l.harga;
                     OV.jumlah = l.jumlah;
                     OV.keterangan = l.keterangan;
-                   // OV.Meja = l.Meja;
+                    OV.tgl_akhir = (DateTime)l.tgl_akhir;
+                    OV.tgl_mulai = (DateTime)l.tgl_mulai;
+                    OV.tgl_pesan = (DateTime)l.tgl_pesan;
                     OV.quantity = l.quantity;
                     orders.Add(OV);
                 }

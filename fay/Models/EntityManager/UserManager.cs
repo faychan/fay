@@ -12,7 +12,7 @@ namespace fay.Models.EntityManager
         public void AddUserAccount(UserSignUpView user)
         {
 
-            using (DemoEntities db = new DemoEntities())
+            using (DemoEntities1 db = new DemoEntities1())
             {
 
                 SYSUser SU = new SYSUser();
@@ -66,7 +66,7 @@ namespace fay.Models.EntityManager
 
         public bool IsLoginNameExist(string loginName)
         {
-            using (DemoEntities db = new DemoEntities())
+            using (DemoEntities1 db = new DemoEntities1())
             {
                 return db.SYSUsers.Where(o => o.LoginName.Equals(loginName)).Any();
             }
@@ -74,7 +74,7 @@ namespace fay.Models.EntityManager
 
         public string GetUserPassword(string loginName)
         {
-            using (DemoEntities db = new DemoEntities())
+            using (DemoEntities1 db = new DemoEntities1())
             {
                 var user = db.SYSUsers.Where(o => o.LoginName.ToLower().Equals(loginName));
                 if (user.Any())
@@ -88,7 +88,7 @@ namespace fay.Models.EntityManager
 
         public List<LOOKUPAvailableRole> GetAllRoles()
         {
-            using (DemoEntities db = new DemoEntities())
+            using (DemoEntities1 db = new DemoEntities1())
             {
                 var roles = db.LOOKUPRoles.Select(o => new LOOKUPAvailableRole
                 {
@@ -103,7 +103,7 @@ namespace fay.Models.EntityManager
 
         public int GetUserID(string loginName)
         {
-            using (DemoEntities db = new DemoEntities())
+            using (DemoEntities1 db = new DemoEntities1())
             {
                 var user = db.SYSUsers.Where(o => o.LoginName.Equals(loginName));
                 if (user.Any())
@@ -114,7 +114,7 @@ namespace fay.Models.EntityManager
         public List<UserProfileView> GetAllUserProfiles()
         {
             List<UserProfileView> profiles = new List<UserProfileView>();
-            using (DemoEntities db = new DemoEntities())
+            using (DemoEntities1 db = new DemoEntities1())
             {
                 UserProfileView UPV;
                 var users = db.SYSUsers.ToList();
@@ -160,7 +160,7 @@ namespace fay.Models.EntityManager
             string userGender = string.Empty;
 
             userID = GetUserID(loginName);
-            using (DemoEntities db = new DemoEntities())
+            using (DemoEntities1 db = new DemoEntities1())
             {
                 userAssignedRoleID = db.SYSUserRoles.Where(o => o.SYSUserID == userID)?.FirstOrDefault().LOOKUPRoleID;
                 userGender = db.SYSUserProfiles.Where(o => o.SYSUserID == userID)?.FirstOrDefault().Gender;
@@ -179,7 +179,7 @@ namespace fay.Models.EntityManager
         public void UpdateUserAccount(UserProfileView user)
         {
 
-            using (DemoEntities db = new DemoEntities())
+            using (DemoEntities1 db = new DemoEntities1())
             {
                 using (var dbContextTransaction = db.Database.BeginTransaction())
                 {
@@ -254,7 +254,7 @@ namespace fay.Models.EntityManager
         }
         public void DeleteUser(int userID)
         {
-            using (DemoEntities db = new DemoEntities())
+            using (DemoEntities1 db = new DemoEntities1())
             {
                 using (var dbContextTransaction = db.Database.BeginTransaction())
                 {
@@ -294,7 +294,7 @@ namespace fay.Models.EntityManager
         public UserProfileView GetUserProfile(int userID)
         {
             UserProfileView UPV = new UserProfileView();
-            using (DemoEntities db = new DemoEntities())
+            using (DemoEntities1 db = new DemoEntities1())
             {
                 var user = db.SYSUsers.Find(userID);
                 if (user != null)

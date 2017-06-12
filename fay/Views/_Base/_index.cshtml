@@ -3,12 +3,6 @@
 }
 
 <!DOCTYPE html>
-<!--
-    fay - 2017. Project by Muhammad Faishal Akbar.
-    https://github.com/mfaishalakbar.
-
-    DO NOT COPY OR MODIFY UNLESS YOU'RE THE OWNER.
--->
 <html>
 <head>
     <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet">
@@ -127,33 +121,6 @@
                 </a>
                 <ul class="dropdown-outbond" style="padding: 15px;">
                     <div class="navbar-form">
-                        @model fay.Models.ViewModel.UserLoginView
-                        @using (Html.BeginForm("LogIn", "User", FormMethod.Post))
-                        {
-
-                            @Html.AntiForgeryToken()
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            <div class="form-group form-plz">
-                                @Html.EditorFor(model => model.LoginName, new { htmlAttributes = new { @class = "form-control", placeholder = "Username" } })
-
-                            </div>
-
-                            <div class="form-group form-plz">
-                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "Password" } })
-
-                            </div>
-
-                            <div class="form-group">
-                                <div class="">
-                                    <input type="submit" value="Login" class="btn btn-default" />
-                                </div>
-                            </div>
-                            <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-                            <script src="~/Scripts/jquery.validate.min.js"></script>
-                            <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-
-                        }
-
                     </div>
                 </ul>
             </li>

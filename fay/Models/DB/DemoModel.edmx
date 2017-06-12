@@ -339,7 +339,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="DemoEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="DemoEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="laporans" EntityType="Self.laporan" />
           <EntitySet Name="LOOKUPRoles" EntityType="Self.LOOKUPRole" />
           <EntitySet Name="outbonds" EntityType="Self.outbond" />
@@ -373,7 +373,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DemoModelStoreContainer" CdmEntityContainer="DemoEntities">
+        <EntityContainerMapping StorageEntityContainer="DemoModelStoreContainer" CdmEntityContainer="DemoEntities1">
           <EntitySetMapping Name="laporans">
             <EntityTypeMapping TypeName="DemoModel.laporan">
               <MappingFragment StoreEntitySet="laporan">
@@ -470,7 +470,7 @@
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
-  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HEREketerangan -->
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <Connection>
       <DesignerInfoPropertySet>
@@ -486,7 +486,7 @@
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
-    <!-- Diagram content (shape and connector positionsketerangan -->
+    <!-- Diagram content (shape and connector positions) -->
     <Diagrams></Diagrams>
   </Designer>
 </edmx:Edmx>

@@ -46,7 +46,7 @@ namespace fay.Controllers
             MPV.keterangan = outbondketerangan;
             MPV.harga = outbondPrice;
 
-            using (DemoEntities db = new DemoEntities())
+            using (DemoEntities1 db = new DemoEntities1())
             {
                 using (var dbContext = db.Database.BeginTransaction())
                 {
@@ -79,7 +79,7 @@ namespace fay.Controllers
        //[AuthorizeRoles("Admin")]
         public ActionResult DeleteUser(int outbondID)
         {
-            using (DemoEntities db = new DemoEntities())
+            using (DemoEntities1 db = new DemoEntities1())
             {
                 using (var dbContext = db.Database.BeginTransaction())
                 {

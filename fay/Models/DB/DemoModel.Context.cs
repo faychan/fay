@@ -13,10 +13,10 @@ namespace fay.Models.DB
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DemoEntities : DbContext
+    public partial class DemoEntities1 : DbContext
     {
-        public DemoEntities()
-            : base("name=DemoEntities")
+        public DemoEntities1()
+            : base("name=DemoEntities1")
         {
         }
     
