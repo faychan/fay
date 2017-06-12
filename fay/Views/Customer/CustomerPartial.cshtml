@@ -1,0 +1,33 @@
+﻿
+@model fay.Models.ViewModel.CustomerDataView
+<div>
+    <table class="table table-striped table-condensed table-hover">
+        <thead>
+            <tr>
+                <th>Customer ID</th>
+                <th>ID Number</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Telephone 1</th>
+                <th>Telephone 2</th>
+                <th colspan="2">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var i in Model.CustomerProfile)
+            {
+                <tr>
+                    <td> @Html.DisplayFor(m => i.PelangganID)</td>
+                    <td> @Html.DisplayFor(m => i.NoID)</td>
+                    <td> @Html.DisplayFor(m => i.Nama)</td>
+                    <td> @Html.DisplayFor(m => i.Alamat)</td>
+                    <td> @Html.DisplayFor(m => i.Telepon1)</td>
+                    <td> @Html.DisplayFor(m => i.Telepon2)</td>
+                    <td class="btn-group-sm"><button class="btn btn-success outbondHistory">Customer History</button> <button class="btn btn-info outbondEdit">Edit</button> <button class="btn btn-danger outbondDelete">Delete</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@Html.Action("AdminCustomerPartial", "Customer")

@@ -1,0 +1,10 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_Base/_index.cshtml";
+}
+<h2>Customer List</h2>
+<h4>Manage, Delete All on one Place!</h4>
+<hr />
+<div id="divUserListContainer">
+    @Html.Action("CustomerPartial", "Customer");
+</div>   

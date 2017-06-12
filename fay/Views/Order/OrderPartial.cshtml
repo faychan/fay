@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_Base/_index.cshtml";
+}
+<h2>outbond List</h2>
+<h4>Enjoy our treats!</h4>
+<hr />
+<div id="divOrderListContainer">
+    @Html.Action("OrderPartial", "Order");
+</div>   

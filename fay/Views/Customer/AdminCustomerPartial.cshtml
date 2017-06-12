@@ -1,0 +1,170 @@
+﻿
+<div class="modal fade" id="historyModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Customer History</h4>
+            </div>
+            <div class="modal-body">
+                <div id="divCustomerHistory"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Delete outbond</h4>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure want to delete this outbond?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" id="deletThis">Yeah</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">N-nooo</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Edit User</h4>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="hidID" />
+                <div class="full-width">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <label for="customerID" class="control-label">ID</label>
+                            <input type="text" id="customerID" class="form-control" />
+                        </div>
+                        <div class="input-group">
+                            <label for="customerName" class="control-label">Name</label>
+                            <input type="text" id="customerName" class="form-control" />
+                        </div>
+                        <div class="input-group">
+                            <label for="customerAddress" class="control-label">Address</label>
+                            <input type="text" id="customerAddress" class="form-control" />
+                        </div>
+                        <div class="input-group">
+                            <label for="customerPhoneOne" class="control-label">Telephone 1</label>
+                            <input type="text" id="customerPhoneOne" class="form-control" />
+                        </div>
+                        <div class="input-group">
+                            <label for="customerPhoneTwo" class="control-label">Telephone 2</label>
+                            <input type="text" id="customerPhoneTwo" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="saveData">Save changes</button>
+                    </div>
+                </div>
+                <script>
+
+    function commitData(pID, cID, cN, cA, cPO, cPT) {
+        $.ajax({
+            type: "POST",
+            url: "@(Url.Action("EditCustomer","Customer"))",
+            data: {
+                pelangganID: pID,
+                customerID: cID,
+                customerName: cN,
+                customerAddress: cA,
+                customerPhoneOne: cPO,
+                customerPhoneTwo: cPT
+            },
+        success: function (data) {
+            $("#divUserListContainer").load("@(Url.Action("CustomerPartial","Customer"))");
+            console.log("Customer Commit success!");
+        },
+        error: function (error) {
+            console.log("Customer Commit Failed!!");
+        }
+    });
+    }
+    function DeleteCustomer(id) {
+        $.ajax({
+            type: "POST",
+            url: "@(Url.Action("DeleteCustomer","Customer"))",
+            data: { pelangganID: id },
+        success: function (data) {
+            $("#divUserListContainer").load("@(Url.Action("CustomerPartial","Customer"))");
+            console.log("Customer Deletion success!");
+        },
+        error: function (error) {
+            console.log("Customer Deletion Failed!!");
+        }
+    });
+    }
+
+    function GetCustomerHistory(id) {
+        $.ajax({
+            type: "POST",
+            url: "@(Url.Action("CustomerHistory","Customer"))",
+            data: { pelangganID: id },
+            success: function (data) {
+                console.log(data);
+                $("#divCustomerHistory").html(data);
+            console.log("Customer History success!");
+        },
+        error: function (error) {
+            console.log("Customer History Failed!!");
+        }
+    });
+    }
+
+    var id;
+    $("button.outbondDelete").click(function () {
+        var row = $(this).closest('tr');
+        id = row.find("td:eq(0)").html().trim();
+        console.log(id);
+        $("#deleteModal").modal('show');
+    });
+
+
+    $("button.outbondHistory").click(function () {
+
+        var row = $(this).closest('tr');
+        id = row.find("td:eq(0)").html().trim();
+        GetCustomerHistory(id);
+        $("#historyModal").modal('show');
+    });
+
+    $("button.outbondEdit").click(function () {
+        var row = $(this).closest('tr');
+        id = row.find("td:eq(0)").html().trim();
+
+        $("#customerID").val(row.find("td:eq(1)").html().trim())
+        $("#customerName").val(row.find("td:eq(2)").html().trim())
+        $("#customerAddress").val(row.find("td:eq(3)").html().trim())
+        $("#customerPhoneOne").val(row.find("td:eq(4)").html().trim())
+        $("#customerPhoneTwo").val(row.find("td:eq(5)").html().trim())
+        $("#editModal").modal('show');
+    });
+
+    $("#deletThis").click(function () {
+        DeleteCustomer(id);
+        $('#deleteModal').modal('hide');
+    });
+
+    $("#saveData").click(function () {
+        var cID = $("#customerID").val();
+        var cN = $("#customerName").val();
+        var cA = $("#customerAddress").val();
+        var cPO = $("#customerPhoneOne").val();
+        var cPT = $("#customerPhoneTwo").val();
+
+        commitData(id, cID, cN, cA, cPO, cPT);
+        $('#editModal').modal('hide');
+    });
+                </script>

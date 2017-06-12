@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_Base/_index.cshtml";
+}
+<h2>Admin Management Tool</h2>
+<h4>Do not use it unless you're Admin. oh wait.</h4>
+<hr />
+<br />
+<h4>Users List</h4>
+<div id="divUserListContainer">
+    @Html.Action("UsersListPartial", "Admin");
+</div>
